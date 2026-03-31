@@ -1,0 +1,167 @@
+{
+  "auth": {
+    "login": "Inloggen",
+    "register": "Registreren",
+    "logout": "Uitloggen",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "repeatPassword": "Herhaal wachtwoord",
+    "newPassword": "Nieuw wachtwoord",
+    "country": "Land",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "sendResetLink": "Herstelkoppeling versturen",
+    "resetPassword": "Wachtwoord opnieuw instellen",
+    "resetEmailSent": "Als dat e-mailadres bestaat, is er een herstelkoppeling verzonden.",
+    "backToLogin": "Terug naar inloggen",
+    "noAccount": "Geen account? Registreer",
+    "haveAccount": "Al een account? Inloggen",
+    "invalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "passwordReset": "Wachtwoord succesvol opnieuw ingesteld"
+  },
+  "subscribe": {
+    "choosePlan": "Kies uw abonnement",
+    "choosePlanDesc": "Volledige toegang tot alle functies",
+    "freelance": "Freelance",
+    "business": "Zakelijk",
+    "freelanceSummary": "Alles wat u nodig heeft als zelfstandig monteur.",
+    "businessSummary": "Alle functies plus teambeheer.",
+    "featurePartsManagement": "Onderdelen beheer — e-mails doorsturen of foto's uploaden",
+    "featureLaborHours": "Arbeidsuren — elke klus in seconden opzoeken",
+    "featureInvoiceManagement": "Factuurbeheer — genereer en verzend met één tik",
+    "featureSpecs": "Aandraaimoment, vloeistofspecificaties, DTC-codes",
+    "featureTeam": "Beheer uw team en deel toegang",
+    "continue": "Doorgaan naar betaling",
+    "skipTrial": "Overslaan en een gratis proefperiode van 14 dagen starten",
+    "success": "Abonnement geactiveerd!",
+    "redirecting": "Doorsturen naar uw dashboard…"
+  },
+  "nav": {
+    "parts": "Onderdelen",
+    "fluids": "Vloeistoffen",
+    "torque": "Koppel",
+    "dtc": "DTC",
+    "settings": "Instellingen"
+  },
+  "filter": {
+    "all": "Alles",
+    "in_progress": "Lopend",
+    "complete": "Voltooid",
+    "invoiced": "Gefactureerd"
+  },
+  "status": {
+    "in_progress": "Lopend",
+    "complete": "Voltooid",
+    "invoiced": "Gefactureerd"
+  },
+  "visits": {
+    "startJob": "Klus starten",
+    "noJobs": "Nog geen klussen",
+    "noJobsAdded": "Geen klussen toegevoegd",
+    "noCarAdded": "Geen voertuig toegevoegd"
+  },
+  "visit": {
+    "customer": "Klant",
+    "car": "Voertuig",
+    "jobs": "Arbeid",
+    "parts": "Onderdelen",
+    "charges": "Kosten",
+    "summary": "Samenvatting",
+    "invoice": "Factuur",
+    "addCustomer": "Klant toevoegen",
+    "addCar": "Voertuig toevoegen",
+    "addJob": "Arbeid toevoegen",
+    "addCharge": "Kost toevoegen",
+    "noJobs": "Geen arbeid toegevoegd",
+    "noParts": "Geen onderdelen toegevoegd",
+    "noCharges": "Geen kosten toegevoegd",
+    "totalHours": "Totaal uren",
+    "labour": "Arbeidskosten",
+    "markComplete": "Markeren als voltooid",
+    "generateInvoice": "Factuur genereren"
+  },
+  "car": {
+    "lookupTitle": "Voertuig opzoeken",
+    "platePlaceholder": "Kenteken invoeren...",
+    "selectTemplate": "Selecteer overeenkomend voertuig",
+    "confirmAndSave": "Bevestigen en opslaan",
+    "noTemplatesFound": "Geen overeenkomende sjablonen gevonden."
+  },
+  "customer": {
+    "name": "Naam",
+    "email": "E-mail",
+    "phone": "Telefoon"
+  },
+  "parts": {
+    "addParts": "Onderdelen toevoegen",
+    "manual": "Handmatig",
+    "email": "E-mail",
+    "photo": "Foto",
+    "name": "Onderdeelnaam",
+    "partNo": "Onderdeelnummer",
+    "brand": "Merk",
+    "cost": "Kosten (€)",
+    "addToCurrentJob": "Toevoegen aan huidige klus",
+    "emailHint": "Plak de tekst van uw orderbevestigingse-mail",
+    "emailPaste": "E-mailinhoud hier plakken...",
+    "photoHint": "Upload foto's van uw factuur of bon",
+    "selectPhotos": "Foto's selecteren",
+    "photosSelected": "foto('s) geselecteerd",
+    "parse": "Onderdelen extraheren",
+    "partsFound": "onderdelen gevonden",
+    "linkSelected": "{count} onderdeel/onderdelen koppelen"
+  },
+  "invoice": {
+    "status": "Status",
+    "paid": "Betaald",
+    "pending": "In behandeling",
+    "paymentLink": "Betaalkoppeling",
+    "print": "Afdrukken",
+    "markPaid": "Markeren als betaald"
+  },
+  "charges": {
+    "name": "Naam",
+    "price": "Prijs",
+    "createNew": "Nieuwe kost aanmaken"
+  },
+  "settings": {
+    "account": "Account",
+    "garage": "Garage",
+    "pricing": "Prijzen",
+    "garageName": "Garagenaam",
+    "address": "Adres",
+    "hourlyRate": "Uurtarief",
+    "partsMarkup": "Onderdelen opslag",
+    "vatRate": "BTW-tarief"
+  },
+  "reference": {
+    "selectCar": "Selecteer een voertuig",
+    "noFluids": "Geen vloeistofgegevens voor dit voertuig",
+    "noTorque": "Geen aandraaimomenten voor dit voertuig"
+  },
+  "dtc": {
+    "searchPlaceholder": "Zoeken op code of beschrijving...",
+    "searchHint": "Zoek hierboven naar een DTC-code",
+    "description": "Beschrijving",
+    "symptoms": "Symptomen",
+    "commonCauses": "Veelvoorkomende oorzaken",
+    "desc": "Diagnosefoutcodes"
+  },
+  "fluids": { "desc": "Vloeistofspecificaties en capaciteiten" },
+  "torque": { "desc": "Aandraaimomenten" },
+  "common": {
+    "save": "Opslaan",
+    "saved": "Succesvol opgeslagen",
+    "cancel": "Annuleren",
+    "back": "Terug",
+    "more": "meer",
+    "error": "Er is iets misgegaan",
+    "total": "Totaal",
+    "search": "Zoeken...",
+    "searchCars": "Voertuigen zoeken...",
+    "searchFluids": "Vloeistoffen zoeken...",
+    "searchComponent": "Componenten zoeken...",
+    "noResults": "Geen resultaten gevonden",
+    "selectAll": "Alles selecteren"
+  }
+}

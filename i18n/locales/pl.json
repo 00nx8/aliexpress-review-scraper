@@ -1,0 +1,159 @@
+{
+  "auth": {
+    "login": "Zaloguj się",
+    "register": "Zarejestruj się",
+    "logout": "Wyloguj się",
+    "email": "Email",
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło",
+    "newPassword": "Nowe hasło",
+    "country": "Kraj",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "sendResetLink": "Wyślij link resetujący",
+    "resetPassword": "Zresetuj hasło",
+    "resetEmailSent": "Jeśli ten email istnieje, wysłano link resetujący.",
+    "backToLogin": "Powrót do logowania",
+    "noAccount": "Nie masz konta? Zarejestruj się",
+    "haveAccount": "Masz już konto? Zaloguj się",
+    "invalidCredentials": "Nieprawidłowy email lub hasło",
+    "passwordMismatch": "Hasła nie są zgodne",
+    "passwordReset": "Hasło zostało pomyślnie zresetowane"
+  },
+  "subscribe": {
+    "choosePlan": "Wybierz swój plan",
+    "choosePlanDesc": "Pełny dostęp do wszystkich funkcji",
+    "freelance": "Freelance",
+    "business": "Biznes",
+    "freelanceSummary": "Wszystko czego potrzebujesz jako samodzielny mechanik.",
+    "businessSummary": "Wszystkie funkcje plus zarządzanie zespołem.",
+    "featurePartsManagement": "Zarządzanie częściami — przekaż emaile lub prześlij zdjęcia",
+    "featureLaborHours": "Godziny pracy — znajdź każdą pracę w sekundy",
+    "featureInvoiceManagement": "Zarządzanie fakturami — generuj i wysyłaj jednym dotknięciem",
+    "featureSpecs": "Momenty dokręcania, specyfikacje płynów, kody DTC",
+    "featureTeam": "Zarządzaj zespołem i udostępniaj dostęp",
+    "continue": "Przejdź do płatności",
+    "skipTrial": "Pomiń i rozpocznij 14-dniowy bezpłatny okres próbny",
+    "success": "Subskrypcja aktywowana!",
+    "redirecting": "Przekierowanie do pulpitu…"
+  },
+  "nav": {
+    "parts": "Części",
+    "fluids": "Płyny",
+    "torque": "Moment",
+    "dtc": "DTC",
+    "settings": "Ustawienia"
+  },
+  "filter": {
+    "all": "Wszystkie",
+    "in_progress": "W toku",
+    "complete": "Zakończone",
+    "invoiced": "Zafakturowane"
+  },
+  "status": {
+    "in_progress": "W toku",
+    "complete": "Zakończone",
+    "invoiced": "Zafakturowane"
+  },
+  "visits": {
+    "startJob": "Rozpocznij pracę",
+    "noJobs": "Brak zleceń",
+    "noJobsAdded": "Nie dodano zleceń",
+    "noCarAdded": "Nie dodano pojazdu"
+  },
+  "visit": {
+    "customer": "Klient",
+    "car": "Pojazd",
+    "jobs": "Praca",
+    "parts": "Części",
+    "charges": "Opłaty",
+    "summary": "Podsumowanie",
+    "invoice": "Faktura",
+    "addCustomer": "Dodaj klienta",
+    "addCar": "Dodaj pojazd",
+    "addJob": "Dodaj pracę",
+    "addCharge": "Dodaj opłatę",
+    "noJobs": "Nie dodano pracy",
+    "noParts": "Nie dodano części",
+    "noCharges": "Nie dodano opłat",
+    "totalHours": "Łączna liczba godzin",
+    "labour": "Robocizna",
+    "markComplete": "Oznacz jako zakończone",
+    "generateInvoice": "Generuj fakturę"
+  },
+  "car": {
+    "lookupTitle": "Wyszukiwanie pojazdu",
+    "platePlaceholder": "Wpisz tablicę rejestracyjną...",
+    "selectTemplate": "Wybierz pasujący pojazd",
+    "confirmAndSave": "Potwierdź i zapisz",
+    "noTemplatesFound": "Nie znaleziono pasujących szablonów."
+  },
+  "customer": { "name": "Imię i nazwisko", "email": "Email", "phone": "Telefon" },
+  "parts": {
+    "addParts": "Dodaj części",
+    "manual": "Ręcznie",
+    "email": "Email",
+    "photo": "Zdjęcie",
+    "name": "Nazwa części",
+    "partNo": "Numer części",
+    "brand": "Marka",
+    "cost": "Koszt (€)",
+    "addToCurrentJob": "Dodaj do bieżącego zlecenia",
+    "emailHint": "Wklej tekst z emaila potwierdzającego zamówienie",
+    "emailPaste": "Wklej zawartość emaila tutaj...",
+    "photoHint": "Prześlij zdjęcia faktury lub paragonu",
+    "selectPhotos": "Wybierz zdjęcia",
+    "photosSelected": "zdjęcie/zdjęcia wybrane",
+    "parse": "Wyodrębnij części",
+    "partsFound": "znalezionych części",
+    "linkSelected": "Połącz {count} część/części z wizytą"
+  },
+  "invoice": {
+    "status": "Status",
+    "paid": "Opłacone",
+    "pending": "Oczekuje",
+    "paymentLink": "Link do płatności",
+    "print": "Drukuj",
+    "markPaid": "Oznacz jako opłacone"
+  },
+  "charges": { "name": "Nazwa", "price": "Cena", "createNew": "Utwórz nową opłatę" },
+  "settings": {
+    "account": "Konto",
+    "garage": "Warsztat",
+    "pricing": "Cennik",
+    "garageName": "Nazwa warsztatu",
+    "address": "Adres",
+    "hourlyRate": "Stawka godzinowa",
+    "partsMarkup": "Narzut na części",
+    "vatRate": "Stawka VAT"
+  },
+  "reference": {
+    "selectCar": "Wybierz pojazd",
+    "noFluids": "Brak danych o płynach dla tego pojazdu",
+    "noTorque": "Brak specyfikacji momentów dla tego pojazdu"
+  },
+  "dtc": {
+    "searchPlaceholder": "Szukaj po kodzie lub opisie...",
+    "searchHint": "Wyszukaj kod DTC powyżej",
+    "description": "Opis",
+    "symptoms": "Objawy",
+    "commonCauses": "Częste przyczyny",
+    "desc": "Kody błędów diagnostycznych"
+  },
+  "fluids": { "desc": "Specyfikacje i pojemności płynów" },
+  "torque": { "desc": "Momenty dokręcania" },
+  "common": {
+    "save": "Zapisz",
+    "saved": "Zapisano pomyślnie",
+    "cancel": "Anuluj",
+    "back": "Wróć",
+    "more": "więcej",
+    "error": "Coś poszło nie tak",
+    "total": "Razem",
+    "search": "Szukaj...",
+    "searchCars": "Szukaj pojazdów...",
+    "searchFluids": "Szukaj płynów...",
+    "searchComponent": "Szukaj komponentów...",
+    "noResults": "Brak wyników",
+    "selectAll": "Zaznacz wszystko"
+  }
+}

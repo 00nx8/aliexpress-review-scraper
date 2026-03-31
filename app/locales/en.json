@@ -1,0 +1,198 @@
+{
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat Password",
+    "newPassword": "New Password",
+    "country": "Country",
+    "forgotPassword": "Forgot password?",
+    "sendResetLink": "Send reset link",
+    "resetPassword": "Reset Password",
+    "resetEmailSent": "If that email exists, a reset link has been sent. Check your inbox.",
+    "backToLogin": "Back to login",
+    "noAccount": "No account? Register",
+    "haveAccount": "Already have an account? Login",
+    "invalidCredentials": "Invalid email or password",
+    "passwordMismatch": "Passwords do not match",
+    "passwordReset": "Password reset successfully"
+  },
+  "subscribe": {
+    "choosePlan": "Choose your plan",
+    "choosePlanDesc": "Get full access to all features",
+    "freelance": "Freelance",
+    "business": "Business",
+    "freelanceSummary": "Everything you need as a solo mechanic. Smart invoicing, parts management, and labor hours.",
+    "businessSummary": "All features plus team management for small garages.",
+    "featurePartsManagement": "Parts management — forward emails or upload photos",
+    "featureLaborHours": "Labor hours — search any job in seconds",
+    "featureInvoiceManagement": "Invoice management — generate and send with one tap",
+    "featureSpecs": "Torque specs, fluid specs, DTC codes",
+    "featureTeam": "Manage your team and share access",
+    "continue": "Continue to payment",
+    "skipTrial": "Skip for now and start a 14-day free trial",
+    "success": "Subscription activated!",
+    "redirecting": "Redirecting to your dashboard…"
+  },
+  "nav": {
+    "visits": "Jobs",
+    "parts": "Parts",
+    "fluids": "Fluids",
+    "torque": "Torque",
+    "dtc": "DTC",
+    "settings": "Settings"
+  },
+  "filter": {
+    "all": "All",
+    "in_progress": "Ongoing",
+    "complete": "Completed",
+    "invoiced": "Invoiced"
+  },
+  "status": {
+    "in_progress": "Ongoing",
+    "complete": "Completed",
+    "invoiced": "Invoiced"
+  },
+  "visits": {
+    "startJob": "Start Job",
+    "noJobs": "No jobs yet",
+    "noJobsAdded": "No jobs added",
+    "noCarAdded": "No car added"
+  },
+  "visit": {
+    "customer": "Customer",
+    "car": "Vehicle",
+    "jobs": "Labor",
+    "parts": "Parts",
+    "charges": "Charges",
+    "summary": "Summary",
+    "invoice": "Invoice",
+    "addCustomer": "Add Customer",
+    "addCar": "Add Vehicle",
+    "addJob": "Add Labor",
+    "addCharge": "Add Charge",
+    "noJobs": "No labor added",
+    "noParts": "No parts added",
+    "noCharges": "No charges added",
+    "totalHours": "Total hours",
+    "labour": "Labour",
+    "markComplete": "Mark as Complete",
+    "generateInvoice": "Generate Invoice",
+    "addCarFirst": "Add a vehicle to this visit to search labor"
+  },
+  "car": {
+    "lookupTitle": "Vehicle Lookup",
+    "platePlaceholder": "Enter plate...",
+    "selectTemplate": "Select matching vehicle",
+    "confirmAndSave": "Confirm & Save",
+    "noTemplatesFound": "No matching templates found. Try searching manually.",
+    "existingPlate": "This plate is already in your system — linking to this visit.",
+    "linkAndSave": "Link to this visit",
+    "linkPreviousCustomer": "Link previous customer to this visit"
+  },
+  "customer": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "parts": {
+    "addParts": "Add Parts",
+    "manual": "Manual",
+    "email": "Email",
+    "photo": "Photo",
+    "name": "Part Name",
+    "partNo": "Part Number",
+    "brand": "Brand",
+    "cost": "Cost (€)",
+    "addToCurrentJob": "Add to current job",
+    "emailHint": "Paste the text from your order confirmation email",
+    "emailPaste": "Paste email content here...",
+    "photoHint": "Upload photos of your invoice or receipt",
+    "selectPhotos": "Select Photos",
+    "photosSelected": "photo(s) selected",
+    "parse": "Extract Parts",
+    "partsFound": "parts found",
+    "saved": "Saved Parts",
+    "searchSaved": "Search saved parts...",
+    "addSelected": "Add {count} part(s)",
+    "linkSelected": "Link {count} part(s) to visit"
+  },
+  "invoice": {
+    "status": "Status",
+    "paid": "Paid",
+    "pending": "Pending",
+    "paymentLink": "Payment Link",
+    "print": "Print / Download",
+    "markPaid": "Mark Paid",
+    "invoiceNo": "Invoice",
+    "date": "Date",
+    "billTo": "Bill To",
+    "vehicle": "Vehicle",
+    "description": "Description",
+    "hours": "Hours",
+    "rate": "Rate",
+    "amount": "Amount",
+    "qty": "Qty",
+    "unitPrice": "Unit Price",
+    "labour": "Labour",
+    "parts": "Parts",
+    "charges": "Charges",
+    "subtotal": "Subtotal",
+    "vat": "VAT",
+    "total": "Total",
+    "thankYou": "Thank you for your business!",
+    "notFound": "Invoice not found"
+  },
+  "charges": {
+    "name": "Name",
+    "price": "Price",
+    "createNew": "Create new charge"
+  },
+  "settings": {
+    "account": "Account",
+    "garage": "Garage",
+    "pricing": "Pricing",
+    "garageName": "Garage Name",
+    "address": "Address",
+    "hourlyRate": "Hourly Rate",
+    "partsMarkup": "Parts Markup",
+    "vatRate": "VAT Rate"
+  },
+  "reference": {
+    "selectCar": "Select a vehicle",
+    "noFluids": "No fluid data for this vehicle",
+    "noTorque": "No torque specs for this vehicle"
+  },
+  "dtc": {
+    "searchPlaceholder": "Search codes...",
+    "searchHint": "Search for a DTC code above",
+    "allCodes": "Browse all codes",
+    "description": "Description",
+    "symptoms": "Symptoms",
+    "commonCauses": "Common Causes",
+    "desc": "Diagnostic trouble codes"
+  },
+  "fluids": {
+    "desc": "Fluid specifications and capacities"
+  },
+  "torque": {
+    "desc": "Torque specifications"
+  },
+  "common": {
+    "save": "Save",
+    "saved": "Saved successfully",
+    "cancel": "Cancel",
+    "back": "Back",
+    "more": "more",
+    "error": "Something went wrong",
+    "total": "Total",
+    "search": "Search...",
+    "searchCars": "Search vehicles...",
+    "searchFluids": "Search fluids...",
+    "searchComponent": "Search components...",
+    "noResults": "No results found",
+    "selectAll": "Select all"
+  }
+}
