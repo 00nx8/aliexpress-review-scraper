@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware(async (to) => {
   const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password']
-  const subscribeRoutes = ['/subscribe', '/subscribe/payment']
+  const subscribeRoutes = ['/subscribe', '/subscribe/payment', '/subscribe/success']
 
   if (publicRoutes.includes(to.path)) return
 
@@ -9,7 +9,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (!loggedIn.value) {
     return navigateTo('/login')
   }
-
   // Redirect to subscription selection if unset
   if (!subscribeRoutes.includes(to.path)) {
     const sub = (user.value as any)?.subscriptionType

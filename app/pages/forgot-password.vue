@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'auth', auth: false })
+definePageMeta({ layout: 'auth', auth: false, middleware: 'login' })
 const { t } = useI18n()
 
 const email = ref('')

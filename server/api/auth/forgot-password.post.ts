@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     .from(users)
     .where(eq(users.email, email.toLowerCase()))
     .limit(1)
-
+  console.log([user])
   // Always return success to avoid user enumeration
   if (!user) return { ok: true }
 

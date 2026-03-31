@@ -17,12 +17,13 @@ export default defineEventHandler(async (event) => {
   }
 
   const db = useDb()
+  console.log('webhook runs no problem')
+  console.log(stripeEvent.type)
 
   if (stripeEvent.type === 'checkout.session.completed') {
     const session = stripeEvent.data.object as Stripe.Checkout.Session
     const userId = Number(session.metadata?.userId)
     const plan = session.metadata?.plan as 'freelance' | 'business'
-
     if (userId && plan) {
       await db.update(users).set({
         subscriptionType: plan,
