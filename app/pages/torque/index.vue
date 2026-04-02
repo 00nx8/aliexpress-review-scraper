@@ -40,8 +40,6 @@ const { data: specs } = await useFetch<any[]>('/api/reference/torque', {
         </div>
       </div>
 
-      <UInput v-model="search" :placeholder="t('common.searchComponent')" icon="i-lucide-search" class="w-full" />
-
       <div v-if="!specs?.length" class="text-center py-8 text-gray-400">
         <UIcon name="i-lucide-gauge" class="size-10 mx-auto mb-2" />
         {{ t('reference.noTorque') }}
