@@ -40,6 +40,7 @@ Jobs:
 
 
 UK:
+  - Existing cars can show up when the region for the car is not the same as the search region.
   - Endpoint for car lookup is returning 1.0L for a 1.4L car
 
 Add a section at the bottom of settings stating we dont
