@@ -1,10 +1,11 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 const { t } = useI18n()
-
+const {fetch: refreshSession} = useUserSession()
 onMounted(async () => {
   // Verify subscription was updated
-  const res = await $fetch('/api/subscribe/verify', { method: 'POST' })
+  await $fetch('/api/subscribe/verify', { method: 'POST' })
+  await refreshSession()
   setTimeout(() => navigateTo({path: "/"}), 200)
 })
 </script>

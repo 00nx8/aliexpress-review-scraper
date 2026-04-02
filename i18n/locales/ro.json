@@ -37,6 +37,7 @@
     "redirecting": "Redirecționare la tabloul de bord…"
   },
   "nav": {
+    "visits": "Lucrări",
     "parts": "Piese",
     "fluids": "Fluide",
     "torque": "Cuplu",
@@ -124,7 +125,16 @@
     "address": "Adresă",
     "hourlyRate": "Tarif orar",
     "partsMarkup": "Adaos piese",
-    "vatRate": "Cotă TVA"
+    "vatRate": "Cotă TVA",
+    "subscription": "Abonament",
+    "currentPlan": "Plan curent",
+    "changePlan": "Schimbă planul",
+    "subscribe": "Abonează-te",
+    "cancelPlan": "Anulează planul",
+    "cancelPlanConfirm": "Aceasta va anula imediat abonamentul. Continui?",
+    "planTrial": "Perioadă de probă gratuită",
+    "planNone": "Niciun plan activ",
+    "language": "Limbă"
   },
   "reference": {
     "selectCar": "Selectează un vehicul",

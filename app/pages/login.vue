@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'auth', auth: false, middleware: 'login' })
+definePageMeta({ layout: 'auth', auth: false })
 const { t } = useI18n()
 
 const router = useRouter();
@@ -13,7 +13,7 @@ async function login() {
   loading.value = true
   try {
     await $fetch('/api/auth/login', { method: 'POST', body: { email: email.value, password: password.value } })
-    await navigateTo({path: '/'})
+    await navigateTo('/')
   } catch (e: any) {
     error.value = e?.data?.message || t('auth.invalidCredentials')
   } finally {

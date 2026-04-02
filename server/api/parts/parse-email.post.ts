@@ -5,7 +5,7 @@ import Anthropic from '@anthropic-ai/sdk'
 
 const EXTRACTION_PROMPT = `Extract all parts/products from this order confirmation email or document.
 Return ONLY a valid JSON array with no extra text:
-[{"name": "string", "partNo": "string or null", "brand": "string or null", "unitCost": number, "quantity": number}]
+[{"name": "string", "partNo": "string", "brand": "string", "unitCost": number, "quantity": number}]
 Only include physical parts/products. Exclude shipping fees, taxes, and service charges.
 If no parts found, return [].`
 

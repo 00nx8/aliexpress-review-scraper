@@ -1,5 +1,18 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale, setLocale } = useI18n()
+
+const locales = [
+  { label: 'English', value: 'en' },
+  { label: 'Nederlands', value: 'nl' },
+  { label: 'Română', value: 'ro' },
+  { label: 'Polski', value: 'pl' },
+  { label: 'Magyar', value: 'hu' },
+  { label: 'Deutsch', value: 'de' },
+  { label: 'Български', value: 'bg' },
+  { label: 'Türkçe', value: 'tr' },
+  { label: 'Français', value: 'fr' }
+]
+const { fetch: refreshSession } = useUserSession()
 
 const { data, refresh } = await useFetch('/api/settings')
 
@@ -14,6 +27,34 @@ const partsMarkup = ref('')
 const vatRate = ref('')
 const saving = ref(false)
 const saved = ref(false)
+const confirmCancel = ref(false)
+const cancelling = ref(false)
+
+const subscriptionType = computed(() => data.value?.user?.subscriptionType)
+const hasPaidPlan = computed(() => subscriptionType.value === 'freelance' || subscriptionType.value === 'business')
+const planLabel = computed(() => {
+  if (subscriptionType.value === 'trial') return t('settings.planTrial')
+  if (subscriptionType.value === 'freelance') return t('subscribe.freelance')
+  if (subscriptionType.value === 'business') return t('subscribe.business')
+  return t('settings.planNone')
+})
+const planBadgeColor = computed(() => {
+  if (subscriptionType.value === 'trial') return 'warning' as const
+  if (subscriptionType.value === 'freelance' || subscriptionType.value === 'business') return 'primary' as const
+  return 'neutral' as const
+})
+
+async function cancelSubscription() {
+  cancelling.value = true
+  try {
+    await $fetch('/api/subscribe/cancel', { method: 'POST' })
+    confirmCancel.value = false
+    await refresh()
+    await refreshSession()
+  } finally {
+    cancelling.value = false
+  }
+}
 
 watch(data, (d) => {
   if (!d) return
@@ -110,6 +151,42 @@ async function logout() {
         <UFormField :label="t('settings.vatRate') + ' (%)'">
           <UInput v-model="vatRate" type="number" step="0.1" min="0" max="100" class="w-full" />
         </UFormField>
+      </UCard>
+    </div>
+
+    <!-- Language -->
+    <div>
+      <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{{ t('settings.language') }}</h2>
+      <UCard>
+        <USelect
+          :model-value="locale"
+          :items="locales"
+          class="w-full"
+          @update:model-value="setLocale($event)"
+        />
+      </UCard>
+    </div>
+
+    <!-- Subscription -->
+    <div>
+      <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{{ t('settings.subscription') }}</h2>
+      <UCard class="space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-gray-600 dark:text-gray-400">{{ t('settings.currentPlan') }}</span>
+          <UBadge :color="planBadgeColor" variant="subtle">{{ planLabel }}</UBadge>
+        </div>
+        <div v-if="confirmCancel" class="space-y-3">
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('settings.cancelPlanConfirm') }}</p>
+          <div class="flex gap-2">
+            <UButton size="sm" color="error" :loading="cancelling" @click="cancelSubscription">{{ t('settings.cancelPlan') }}</UButton>
+            <UButton size="sm" variant="outline" @click="confirmCancel = false">{{ t('common.cancel') }}</UButton>
+          </div>
+        </div>
+        <div v-else class="flex gap-2 flex-wrap">
+          <UButton v-if="hasPaidPlan" size="sm" variant="outline" to="/subscribe">{{ t('settings.changePlan') }}</UButton>
+          <UButton v-if="!hasPaidPlan" size="sm" to="/subscribe">{{ t('settings.subscribe') }}</UButton>
+          <UButton v-if="hasPaidPlan" size="sm" variant="outline" color="error" @click="confirmCancel = true">{{ t('settings.cancelPlan') }}</UButton>
+        </div>
       </UCard>
     </div>
 

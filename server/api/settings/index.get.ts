@@ -14,7 +14,8 @@ export default defineEventHandler(async (event) => {
     hourlyRate: users.hourlyRate,
     partsMarkup: users.partsMarkup,
     vatRate: users.vatRate,
-    garageId: users.garageId
+    garageId: users.garageId,
+    subscriptionType: users.subscriptionType
   }).from(users).where(eq(users.id, sessionUser.id)).limit(1)
 
   let garage = null

@@ -158,7 +158,16 @@
     "address": "Address",
     "hourlyRate": "Hourly Rate",
     "partsMarkup": "Parts Markup",
-    "vatRate": "VAT Rate"
+    "vatRate": "VAT Rate",
+    "subscription": "Subscription",
+    "currentPlan": "Current plan",
+    "changePlan": "Change Plan",
+    "subscribe": "Subscribe",
+    "cancelPlan": "Cancel Plan",
+    "cancelPlanConfirm": "This will cancel your subscription immediately. Continue?",
+    "planTrial": "Free Trial",
+    "planNone": "No active plan",
+    "language": "Language"
   },
   "reference": {
     "selectCar": "Select a vehicle",

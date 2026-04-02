@@ -25,11 +25,21 @@ export default defineEventHandler(async (event) => {
     const userId = Number(session.metadata?.userId)
     const plan = session.metadata?.plan as 'freelance' | 'business'
     if (userId && plan) {
+      const newSubscriptionId = session.subscription as string
+      const [existingUser] = await db.select({ stripeSubscriptionId: users.stripeSubscriptionId })
+        .from(users).where(eq(users.id, userId)).limit(1)
+      if (existingUser?.stripeSubscriptionId && existingUser.stripeSubscriptionId !== newSubscriptionId) {
+        try {
+          await stripe.subscriptions.cancel(existingUser.stripeSubscriptionId)
+        } catch (e) {
+          console.error('Failed to cancel old subscription:', e)
+        }
+      }
       await db.update(users).set({
         subscriptionType: plan,
         subscriptionStartDate: Date.now(),
         stripeCustomerId: session.customer as string,
-        stripeSubscriptionId: session.subscription as string
+        stripeSubscriptionId: newSubscriptionId
       }).where(eq(users.id, userId))
     }
   }

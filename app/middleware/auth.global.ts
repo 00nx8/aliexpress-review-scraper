@@ -7,6 +7,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const { loggedIn, user } = useUserSession()
 
   if (!loggedIn.value) {
+    console.log('not logged in')
     return navigateTo('/login')
   }
   // Redirect to subscription selection if unset

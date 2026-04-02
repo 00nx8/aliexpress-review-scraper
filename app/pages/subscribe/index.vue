@@ -127,7 +127,7 @@ async function continueToPayment() {
         {{ t('subscribe.continue') }}
       </UButton>
 
-      <div class="text-center mt-4">
+      <div v-if="!user?.subscriptionType || user.subscriptionType === 'unset'" class="text-center mt-4">
         <button
           class="text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           :disabled="loading"

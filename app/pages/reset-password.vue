@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'auth', auth: false, middleware: 'reset-password' })
+definePageMeta({ layout: 'auth', auth: false })
 const { t } = useI18n()
 const route = useRoute()
 

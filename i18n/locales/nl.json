@@ -37,6 +37,7 @@
     "redirecting": "Doorsturen naar uw dashboard…"
   },
   "nav": {
+    "visits": "Opdrachten",
     "parts": "Onderdelen",
     "fluids": "Vloeistoffen",
     "torque": "Koppel",
@@ -132,7 +133,16 @@
     "address": "Adres",
     "hourlyRate": "Uurtarief",
     "partsMarkup": "Onderdelen opslag",
-    "vatRate": "BTW-tarief"
+    "vatRate": "BTW-tarief",
+    "subscription": "Abonnement",
+    "currentPlan": "Huidig abonnement",
+    "changePlan": "Abonnement wijzigen",
+    "subscribe": "Abonneren",
+    "cancelPlan": "Abonnement opzeggen",
+    "cancelPlanConfirm": "Dit annuleert je abonnement direct. Doorgaan?",
+    "planTrial": "Gratis proefperiode",
+    "planNone": "Geen actief abonnement",
+    "language": "Taal"
   },
   "reference": {
     "selectCar": "Selecteer een voertuig",

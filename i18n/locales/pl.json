@@ -37,6 +37,7 @@
     "redirecting": "Przekierowanie do pulpitu…"
   },
   "nav": {
+    "visits": "Zlecenia",
     "parts": "Części",
     "fluids": "Płyny",
     "torque": "Moment",
@@ -124,7 +125,16 @@
     "address": "Adres",
     "hourlyRate": "Stawka godzinowa",
     "partsMarkup": "Narzut na części",
-    "vatRate": "Stawka VAT"
+    "vatRate": "Stawka VAT",
+    "subscription": "Subskrypcja",
+    "currentPlan": "Aktualny plan",
+    "changePlan": "Zmień plan",
+    "subscribe": "Subskrybuj",
+    "cancelPlan": "Anuluj plan",
+    "cancelPlanConfirm": "Spowoduje to natychmiastowe anulowanie subskrypcji. Kontynuować?",
+    "planTrial": "Bezpłatny okres próbny",
+    "planNone": "Brak aktywnego planu",
+    "language": "Język"
   },
   "reference": {
     "selectCar": "Wybierz pojazd",
