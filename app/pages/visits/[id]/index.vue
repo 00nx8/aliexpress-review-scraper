@@ -4,6 +4,7 @@ interface InvoiceInfo { id: number; status: string; paidAt: string | null; strip
 
 const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 const visitId = computed(() => Number(route.params.id))
 
 const { data, refresh, pending } = await useFetch(`/api/visits/${visitId.value}`)
@@ -68,6 +69,63 @@ async function markPaid() {
   await refreshNuxtData()
   refresh()
 }
+
+async function deleteVisit() {
+  if (!confirm(t('visit.deleteVisitConfirm'))) return
+  await $fetch(`/api/visits/${visitId.value}`, { method: 'DELETE' })
+  await router.replace('/')
+}
+
+async function copyPaymentLink() {
+  if (!invoice.value?.stripePaymentLink) return
+  await navigator.clipboard.writeText(invoice.value.stripePaymentLink)
+  linkCopied.value = true
+  setTimeout(() => { linkCopied.value = false }, 2000)
+}
+
+const linkCopied = ref(false)
+
+// Edit customer
+const showEditCustomer = ref(false)
+const editCustomerName = ref('')
+const editCustomerEmail = ref('')
+const editCustomerPhone = ref('')
+const editCustomerLoading = ref(false)
+
+function openEditCustomer() {
+  editCustomerName.value = customer.value?.name || ''
+  editCustomerEmail.value = customer.value?.email || ''
+  editCustomerPhone.value = customer.value?.phoneNo || ''
+  showEditCustomer.value = true
+}
+
+async function saveCustomerEdit() {
+  if (!customer.value?.id) return
+  editCustomerLoading.value = true
+  try {
+    await $fetch(`/api/customers/${customer.value.id}`, {
+      method: 'PATCH',
+      body: { name: editCustomerName.value, email: editCustomerEmail.value, phoneNo: editCustomerPhone.value }
+    })
+    showEditCustomer.value = false
+    refresh()
+  } finally {
+    editCustomerLoading.value = false
+  }
+}
+
+// Clean up empty visit when navigating away (Option B for item 11)
+const isEmpty = computed(() =>
+  !customer.value && !car.value && !visitJobs.value.length && !visitParts.value.length && !visitCharges.value.length
+)
+
+onBeforeRouteLeave(async () => {
+  if (isEmpty.value && visit.value?.status === 'in_progress') {
+    try {
+      await $fetch(`/api/visits/${visitId.value}`, { method: 'DELETE' })
+    } catch { /* ignore */ }
+  }
+})
 </script>
 
 <template>
@@ -84,7 +142,16 @@ async function markPaid() {
           <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">{{ t('visit.customer') }}</span>
         </template>
         <div v-if="customer" class="space-y-1">
-          <p class="font-semibold text-sm">{{ customer.name }}</p>
+          <div class="flex items-center justify-between">
+            <p class="font-semibold text-sm">{{ customer.name }}</p>
+            <UButton
+              v-if="!isLocked"
+              icon="i-lucide-pencil"
+              variant="ghost"
+              size="xs"
+              @click="openEditCustomer"
+            />
+          </div>
           <p v-if="customer.email" class="text-xs text-gray-500">{{ customer.email }}</p>
           <p v-if="customer.phoneNo" class="text-xs text-gray-500">{{ customer.phoneNo }}</p>
         </div>
@@ -295,6 +362,16 @@ async function markPaid() {
           >
             {{ t('invoice.paymentLink') }}
           </UButton>
+          <UButton
+            v-if="invoice.stripePaymentLink"
+            :icon="linkCopied ? 'i-lucide-check' : 'i-lucide-copy'"
+            size="sm"
+            variant="outline"
+            :color="linkCopied ? 'success' : 'neutral'"
+            @click="copyPaymentLink"
+          >
+            {{ linkCopied ? t('invoice.linkCopied') : t('invoice.copyLink') }}
+          </UButton>
           <UButton icon="i-lucide-printer" size="sm" variant="outline" @click="$router.push(`/visits/${visitId}/invoice`)">
             {{ t('invoice.print') }}
           </UButton>
@@ -332,6 +409,16 @@ async function markPaid() {
         @click="generateInvoice"
       >
         {{ t('visit.generateInvoice') }}
+      </UButton>
+      <UButton
+        block
+        size="lg"
+        color="error"
+        variant="outline"
+        icon="i-lucide-trash-2"
+        @click="deleteVisit"
+      >
+        {{ t('visit.deleteVisit') }}
       </UButton>
     </div>
   </div>
@@ -376,4 +463,33 @@ async function markPaid() {
     @close="showChargeSelector = false"
     @saved="refresh(); showChargeSelector = false"
   />
+
+  <!-- Edit Customer Modal -->
+  <UModal :open="showEditCustomer" @close="showEditCustomer = false">
+    <template #content>
+      <UCard>
+        <template #header>
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold">{{ t('customer.editCustomer') }}</h3>
+            <UButton icon="i-lucide-x" variant="ghost" size="xs" @click="showEditCustomer = false" />
+          </div>
+        </template>
+        <form class="space-y-4" @submit.prevent="saveCustomerEdit">
+          <UFormField :label="t('customer.name')">
+            <UInput v-model="editCustomerName" required class="w-full" />
+          </UFormField>
+          <UFormField :label="t('customer.email')">
+            <UInput v-model="editCustomerEmail" type="email" class="w-full" />
+          </UFormField>
+          <UFormField :label="t('customer.phone')">
+            <UInput v-model="editCustomerPhone" type="tel" class="w-full" />
+          </UFormField>
+          <div class="flex gap-2">
+            <UButton variant="outline" class="flex-1" @click="showEditCustomer = false">{{ t('common.cancel') }}</UButton>
+            <UButton type="submit" :loading="editCustomerLoading" class="flex-1">{{ t('common.save') }}</UButton>
+          </div>
+        </form>
+      </UCard>
+    </template>
+  </UModal>
 </template>

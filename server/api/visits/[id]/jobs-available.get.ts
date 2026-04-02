@@ -49,7 +49,6 @@ export default defineEventHandler(async (event) => {
 
         if (candidates.length) {
           // Score each template: lower = better match
-          // 0 = year in range, >0 = distance outside range; +1000 if engine size prefix doesn't match
           const carEnginePrefix = engineSize.match(/^[\d.]+/)?.[0] || ''
 
           const scored = candidates.map((t) => {
@@ -77,7 +76,6 @@ export default defineEventHandler(async (event) => {
           // Sort by score ascending, take best
           scored.sort((a, b) => a.score - b.score)
           const bestScore = scored[0]!.score
-          // Include all templates with the same best score (handles ties like two engine variants)
           const bestIds = scored.filter(s => s.score === bestScore).map(s => s.id)
 
           // Get job IDs for best matching template(s)
@@ -126,8 +124,8 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // If search term but no car match at all, global fallback
-  if (!jobList.length && query.search) {
+  // Global fallback: only when NO car is linked and there's a search term
+  if (!jobList.length && query.search && !visit.licensePlateId) {
     jobList = await db.select({
       id: jobs.id,
       name: jobs.name,

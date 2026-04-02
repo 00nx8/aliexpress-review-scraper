@@ -80,7 +80,9 @@
     "labour": "Labour",
     "markComplete": "Mark as Complete",
     "generateInvoice": "Generate Invoice",
-    "addCarFirst": "Add a vehicle to this visit to search labor"
+    "addCarFirst": "Add a vehicle to this visit to search labor",
+    "deleteVisit": "Delete Visit",
+    "deleteVisitConfirm": "Are you sure you want to delete this visit? This cannot be undone."
   },
   "car": {
     "lookupTitle": "Vehicle Lookup",
@@ -95,7 +97,8 @@
   "customer": {
     "name": "Name",
     "email": "Email",
-    "phone": "Phone"
+    "phone": "Phone",
+    "editCustomer": "Edit Customer"
   },
   "parts": {
     "addParts": "Add Parts",
@@ -124,6 +127,8 @@
     "paid": "Paid",
     "pending": "Pending",
     "paymentLink": "Payment Link",
+    "copyLink": "Copy Link",
+    "linkCopied": "Copied!",
     "print": "Print / Download",
     "markPaid": "Mark Paid",
     "invoiceNo": "Invoice",
@@ -154,11 +159,31 @@
     "account": "Account",
     "garage": "Garage",
     "pricing": "Pricing",
+    "language": "Language",
+    "subscription": "Subscription",
+    "currentPlan": "Current Plan",
+    "planTrial": "Trial",
+    "planNone": "No Plan",
+    "changePlan": "Change Plan",
+    "subscribe": "Subscribe",
+    "cancelPlan": "Cancel Plan",
+    "cancelPlanConfirm": "Are you sure you want to cancel your subscription?",
     "garageName": "Garage Name",
     "address": "Address",
     "hourlyRate": "Hourly Rate",
     "partsMarkup": "Parts Markup",
-    "vatRate": "VAT Rate"
+    "vatRate": "VAT Rate",
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteAccountWarning": "This will permanently delete your account and all associated data. This cannot be undone.",
+    "deleteAccountConfirm": "Type your email address to confirm deletion:",
+    "deleteAccountEmailMismatch": "Email does not match. Please type your email exactly.",
+    "yourPrivacy": "Your Privacy",
+    "privacyBody": "We do not share, sell, or use your garage or customer information for any purpose other than operating this service. We will never send letters or unsolicited communications to your customers.",
+    "appearance": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   },
   "reference": {
     "selectCar": "Select a vehicle",

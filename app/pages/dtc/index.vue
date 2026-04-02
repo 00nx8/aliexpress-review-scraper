@@ -19,6 +19,11 @@ function severityColor(s: string): BadgeColor {
   const map: Record<string, BadgeColor> = { high: 'error', moderate: 'warning', low: 'info' }
   return map[s?.toLowerCase()] ?? 'neutral'
 }
+
+async function selectCode(code: any) {
+  const full = await $fetch<any>(`/api/reference/dtc/${code.id}`)
+  selectedCode.value = full
+}
 </script>
 
 <template>
@@ -62,14 +67,14 @@ function severityColor(s: string): BadgeColor {
     <div v-else-if="!selectedTemplate" class="space-y-2">
       <div class="flex items-center justify-between">
         <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">{{ t('reference.selectCar') }}</h2>
-        <UButton variant="ghost" size="xs" @click="selectedTemplate = { id: null }">{{ t('dtc.allCodes') }}</UButton>
+        <UButton variant="ghost" size="xs" @click="search = ''; selectedTemplate = { id: null }">{{ t('dtc.allCodes') }}</UButton>
       </div>
       <div class="space-y-1">
         <button
           v-for="tpl in templates"
           :key="tpl.id"
           class="w-full text-left rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm hover:border-primary hover:bg-primary/5 transition-colors"
-          @click="selectedTemplate = tpl"
+          @click="search = ''; selectedTemplate = tpl"
         >
           <div class="font-medium">{{ tpl.brand }} {{ tpl.make }}</div>
           <div class="text-xs text-gray-400">{{ tpl.engineSize }} · {{ tpl.minYear }}–{{ tpl.maxYear || 'present' }}</div>
@@ -95,7 +100,7 @@ function severityColor(s: string): BadgeColor {
         v-for="code in codes"
         :key="code.id"
         class="w-full text-left rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 hover:border-primary hover:bg-primary/5 transition-colors"
-        @click="selectedCode = code"
+        @click="selectCode(code)"
       >
         <div class="flex items-center justify-between">
           <span class="font-mono font-bold">{{ code.code }}</span>

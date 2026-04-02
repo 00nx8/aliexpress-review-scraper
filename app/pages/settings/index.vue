@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { t, locale, setLocale } = useI18n()
+const colorMode = useColorMode()
+const router = useRouter()
 
 const locales = [
   { label: 'English', value: 'en' },
@@ -29,6 +31,10 @@ const saving = ref(false)
 const saved = ref(false)
 const confirmCancel = ref(false)
 const cancelling = ref(false)
+const showDeleteAccount = ref(false)
+const deleteAccountEmail = ref('')
+const deletingAccount = ref(false)
+const deleteAccountError = ref('')
 
 const subscriptionType = computed(() => data.value?.user?.subscriptionType)
 const hasPaidPlan = computed(() => subscriptionType.value === 'freelance' || subscriptionType.value === 'business')
@@ -99,6 +105,24 @@ async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   await navigateTo('/login')
 }
+
+async function deleteAccount() {
+  const userEmail = data.value?.user?.email || ''
+  if (deleteAccountEmail.value !== userEmail) {
+    deleteAccountError.value = t('settings.deleteAccountEmailMismatch')
+    return
+  }
+  deletingAccount.value = true
+  deleteAccountError.value = ''
+  try {
+    await $fetch('/api/auth/account', { method: 'DELETE' })
+    await router.replace('/login')
+  } catch (e: any) {
+    deleteAccountError.value = e?.data?.message || t('common.error')
+  } finally {
+    deletingAccount.value = false
+  }
+}
 </script>
 
 <template>
@@ -167,6 +191,26 @@ async function logout() {
       </UCard>
     </div>
 
+    <!-- Appearance -->
+    <div>
+      <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{{ t('settings.appearance') }}</h2>
+      <UCard>
+        <div class="flex gap-2">
+          <UButton
+            v-for="mode in ['light', 'dark', 'system']"
+            :key="mode"
+            :variant="colorMode.preference === mode ? 'solid' : 'outline'"
+            :color="colorMode.preference === mode ? 'primary' : 'neutral'"
+            :icon="mode === 'light' ? 'i-lucide-sun' : mode === 'dark' ? 'i-lucide-moon' : 'i-lucide-monitor'"
+            class="flex-1"
+            @click="colorMode.preference = mode"
+          >
+            {{ t(`settings.${mode}`) }}
+          </UButton>
+        </div>
+      </UCard>
+    </div>
+
     <!-- Subscription -->
     <div>
       <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{{ t('settings.subscription') }}</h2>
@@ -194,6 +238,40 @@ async function logout() {
       <UAlert v-if="saved" color="success" :description="t('common.saved')" />
       <UButton block :loading="saving" @click="save">{{ t('common.save') }}</UButton>
       <UButton block variant="outline" color="error" @click="logout">{{ t('auth.logout') }}</UButton>
+    </div>
+
+    <!-- Privacy -->
+    <div>
+      <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">{{ t('settings.yourPrivacy') }}</h2>
+      <UCard>
+        <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('settings.privacyBody') }}</p>
+      </UCard>
+    </div>
+
+    <!-- Danger Zone -->
+    <div>
+      <h2 class="text-sm font-semibold text-red-500 uppercase tracking-wide mb-3">{{ t('settings.dangerZone') }}</h2>
+      <UCard class="border-red-200 dark:border-red-900">
+        <div class="space-y-3">
+          <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('settings.deleteAccountWarning') }}</p>
+          <UButton size="sm" color="error" variant="outline" @click="showDeleteAccount = !showDeleteAccount">
+            {{ t('settings.deleteAccount') }}
+          </UButton>
+          <div v-if="showDeleteAccount" class="space-y-3 pt-2 border-t">
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('settings.deleteAccountConfirm') }}</p>
+            <UInput v-model="deleteAccountEmail" type="email" :placeholder="data?.user?.email" class="w-full" />
+            <UAlert v-if="deleteAccountError" color="error" :description="deleteAccountError" />
+            <div class="flex gap-2">
+              <UButton size="sm" color="error" :loading="deletingAccount" @click="deleteAccount">
+                {{ t('settings.deleteAccount') }}
+              </UButton>
+              <UButton size="sm" variant="outline" @click="showDeleteAccount = false; deleteAccountEmail = ''">
+                {{ t('common.cancel') }}
+              </UButton>
+            </div>
+          </div>
+        </div>
+      </UCard>
     </div>
   </div>
 </template>

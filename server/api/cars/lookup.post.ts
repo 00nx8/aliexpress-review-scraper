@@ -1,7 +1,7 @@
 import { requireUser } from '~~/server/utils/auth'
 import { useDb } from '~~/server/db'
 import { cars, vehicles, licensePlates, visits, customers, carTemplates } from '~~/server/db/schema'
-import { eq, and, ilike, gte, lte, or } from 'drizzle-orm'
+import { eq, and, ilike, gte, lte, or, isNotNull, sql } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
   const user = await requireUser(event)
@@ -13,8 +13,13 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const db = useDb()
   const normalizedPlate = plate.toUpperCase().replace(/\s/g, '')
+  const countryCode = (country || 'uk').toLowerCase()
 
-  // Check if plate exists from a previous visit
+  // Check if plate exists from a previous visit — filtered by region
+  const plateWhere = countryCode === 'nl'
+    ? and(eq(licensePlates.licensePlate, normalizedPlate), isNotNull(licensePlates.carId))
+    : and(eq(licensePlates.licensePlate, normalizedPlate), isNotNull(licensePlates.vehicleId))
+
   const existingLp = await db.select({
     id: licensePlates.id,
     licensePlate: licensePlates.licensePlate,
@@ -22,7 +27,7 @@ export default defineEventHandler(async (event) => {
     vehicleId: licensePlates.vehicleId,
     visitId: licensePlates.visitId
   }).from(licensePlates)
-    .where(eq(licensePlates.licensePlate, normalizedPlate))
+    .where(plateWhere)
     .limit(1)
 
   const [firstLp] = existingLp
@@ -48,9 +53,6 @@ export default defineEventHandler(async (event) => {
       return { type: 'existing', licensePlateId: firstLp.id, vehicle: vehicleData, previousCustomer }
     }
   }
-
-  // Country-specific lookup
-  const countryCode = (country || 'uk').toLowerCase()
 
   if (countryCode === 'nl') {
     // RDW API
@@ -86,16 +88,23 @@ export default defineEventHandler(async (event) => {
       const engineCc = res.engineCapacity || 0
       const fuelType = res.fuelType || ''
 
-      // Match car templates: ±0.1L engine size
+      // cc → L: 999cc → 1.0L, 1390cc → 1.4L
       const engineL = engineCc > 0 ? Math.round(engineCc / 100) / 10 : null
       let templates: any[] = []
 
       if (make && engineL) {
+        const lo = parseFloat((engineL - 0.1).toFixed(1))
+        const hi = parseFloat((engineL + 0.1).toFixed(1))
+
+        // Cast varchar "1.4L" → numeric for proper range comparison
+        const engineNumeric = sql<number>`CAST(regexp_replace(${carTemplates.engineSize}, '[^0-9.]', '', 'g') AS numeric)`
+
         templates = await db.select().from(carTemplates).where(
           and(
             ilike(carTemplates.brand, `%${make}%`),
             year ? and(lte(carTemplates.minYear, year), or(eq(carTemplates.maxYear, 0), gte(carTemplates.maxYear, year))) : undefined,
-            lte(carTemplates.engineSize, `${(engineL + 0.1).toFixed(1)}`)
+            sql`${engineNumeric} >= ${lo}`,
+            sql`${engineNumeric} <= ${hi}`
           )
         ).limit(20)
       }

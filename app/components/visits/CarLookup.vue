@@ -111,6 +111,7 @@ async function saveUk() {
               v-model="plate"
               :placeholder="t('car.platePlaceholder')"
               class="flex-1 font-mono uppercase"
+              @input="plate = plate.toUpperCase()"
               @keyup.enter="lookup"
             />
             <UButton :loading="loading" icon="i-lucide-search" @click="lookup" />

@@ -11,6 +11,7 @@ interface VisitCard {
 }
 
 const { t } = useI18n()
+const router = useRouter()
 const activeFilter = useState('visitFilter', () => 'all')
 
 const { data: visits, pending, refresh } = await useFetch<VisitCard[]>('/api/visits', {
@@ -22,7 +23,7 @@ onMounted(() => refresh())
 
 async function startJob() {
   const visit = await $fetch('/api/visits', { method: 'POST' })
-  await navigateTo(`/visits/${(visit as any).id}`)
+  await router.replace(`/visits/${(visit as any).id}`)
 }
 
 type BadgeColor = 'info' | 'warning' | 'success' | 'neutral'

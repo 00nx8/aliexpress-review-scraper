@@ -19,7 +19,11 @@ export default defineEventHandler(async (event) => {
 
   const conditions = []
   if (jobIds) conditions.push(inArray(jobs.id, jobIds))
-  if (query.search) conditions.push(ilike(jobs.name, `%${query.search}%`))
+  if (query.search) {
+    const terms = (query.search as string).trim().split(/\s+/)
+    const termConditions = terms.map(term => ilike(jobs.name, `%${term}%`))
+    conditions.push(termConditions.length === 1 ? termConditions[0]! : and(...termConditions))
+  }
 
   const list = await db.select({
     id: jobs.id,

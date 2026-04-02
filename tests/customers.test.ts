@@ -12,6 +12,7 @@ const mockCreateError = (opts: { statusCode: number; message: string }) => {
 ;(global as any).createError = mockCreateError
 ;(global as any).readBody = vi.fn()
 ;(global as any).getQuery = vi.fn()
+;(global as any).getRouterParam = vi.fn()
 ;(global as any).getUserSession = mockGetUserSession
 
 // ── DB mock ───────────────────────────────────────────────────────────────────
@@ -38,12 +39,21 @@ const authedSession = { user: { id: 1, email: 'user@example.com' } }
 const noSession = { user: null }
 
 // ── GET /api/customers ────────────────────────────────────────────────────────
+// Now scoped: first fetches allowed customer IDs from this user's visits,
+// then queries customers filtered by those IDs.
 async function runGetCustomers(event: object, search?: string) {
-  await requireUser(event)
+  const user = await requireUser(event)
+
+  // Step 1: get distinct customer IDs from this user's visits
+  const allowed: any[] = await mockDbSelect().from().where()
+  const ids = allowed.map((r: any) => r.id).filter(Boolean) as number[]
+  if (!ids.length) return []
+
+  // Step 2: fetch customers scoped to those IDs
   if (search) {
     return mockDbSelect().from().where().limit()
   }
-  return mockDbSelect().from().limit()
+  return mockDbSelect().from().where().limit()
 }
 
 describe('GET /api/customers — auth', () => {
@@ -55,32 +65,67 @@ describe('GET /api/customers — auth', () => {
   })
 })
 
-describe('GET /api/customers — list', () => {
+describe('GET /api/customers — user scoping', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     mockGetUserSession.mockResolvedValue(authedSession)
   })
 
-  it('returns all customers without search', async () => {
+  it('returns empty array when user has no visits with customers', async () => {
+    // First call: no visits → no allowed IDs
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => Promise.resolve([]) })
+    })
+    const result = await runGetCustomers({})
+    expect(result).toEqual([])
+  })
+
+  it('does not query customers table when no allowed IDs', async () => {
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => Promise.resolve([]) })
+    })
+    await runGetCustomers({})
+    // Only one DB call (the visits scoping query), not a second one for customers
+    expect(mockDbSelect).toHaveBeenCalledTimes(1)
+  })
+
+  it('returns all scoped customers without search', async () => {
     const customers = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }]
-    mockDbSelect.mockReturnValue({ from: () => ({ limit: () => Promise.resolve(customers) }) })
+    // First call: visits query returns allowed IDs
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => Promise.resolve([{ id: 1 }, { id: 2 }]) })
+    })
+    // Second call: customers query
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve(customers) }) })
+    })
     const result = await runGetCustomers({})
     expect(result).toEqual(customers)
   })
 
   it('returns filtered customers with search param', async () => {
     const filtered = [{ id: 1, name: 'John' }]
-    mockDbSelect.mockReturnValue({
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => Promise.resolve([{ id: 1 }]) })
+    })
+    mockDbSelect.mockReturnValueOnce({
       from: () => ({ where: () => ({ limit: () => Promise.resolve(filtered) }) })
     })
     const result = await runGetCustomers({}, 'John')
     expect(result).toEqual(filtered)
   })
 
-  it('returns empty array when no customers found', async () => {
-    mockDbSelect.mockReturnValue({ from: () => ({ limit: () => Promise.resolve([]) }) })
+  it('only returns customers linked to this user — not others', async () => {
+    // User 1 only has customer id=5 in their visits
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => Promise.resolve([{ id: 5 }]) })
+    })
+    mockDbSelect.mockReturnValueOnce({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve([{ id: 5, name: 'Alice' }]) }) })
+    })
     const result = await runGetCustomers({})
-    expect(result).toEqual([])
+    expect(result).toHaveLength(1)
+    expect(result[0].id).toBe(5)
   })
 })
 
@@ -167,5 +212,92 @@ describe('POST /api/customers — link existing', () => {
   it('skips visit update when no visitId', async () => {
     await runPostCustomer({}, { name: 'Ignored', existingCustomerId: 99 })
     expect(mockDbUpdate).not.toHaveBeenCalled()
+  })
+})
+
+// ── PATCH /api/customers/[id] ─────────────────────────────────────────────────
+// Allows editing name/email/phone. Scoped: user must own a visit with this customer.
+async function runPatchCustomer(event: object, customerId: number, body: any) {
+  const user = await requireUser(event)
+  const { name, email, phoneNo } = body
+
+  // Verify this customer appears in at least one visit for this user
+  const [ownerVisit] = await mockDbSelect().from().where().limit()
+  if (!ownerVisit) throw mockCreateError({ statusCode: 403, message: 'Customer not found' })
+
+  const update: Record<string, string> = {}
+  if (name !== undefined) update.name = name
+  if (email !== undefined) update.email = email
+  if (phoneNo !== undefined) update.phoneNo = phoneNo
+
+  const [updated] = await mockDbUpdate().set(update).where().returning()
+  return updated
+}
+
+describe('PATCH /api/customers/[id] — auth', () => {
+  beforeEach(() => vi.clearAllMocks())
+
+  it('throws 401 when not authenticated', async () => {
+    mockGetUserSession.mockResolvedValue(noSession)
+    await expect(runPatchCustomer({}, 1, { name: 'New Name' })).rejects.toMatchObject({ statusCode: 401 })
+  })
+})
+
+describe('PATCH /api/customers/[id] — ownership', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockGetUserSession.mockResolvedValue(authedSession)
+  })
+
+  it('throws 403 when customer does not belong to any of this user\'s visits', async () => {
+    mockDbSelect.mockReturnValue({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve([]) }) })
+    })
+    await expect(runPatchCustomer({}, 99, { name: 'Hacker' })).rejects.toMatchObject({ statusCode: 403 })
+  })
+})
+
+describe('PATCH /api/customers/[id] — update', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockGetUserSession.mockResolvedValue(authedSession)
+  })
+
+  it('updates and returns the customer', async () => {
+    const updated = { id: 1, name: 'New Name', email: 'new@example.com', phoneNo: '0612345678' }
+    mockDbSelect.mockReturnValue({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve([{ id: 5 }]) }) })
+    })
+    mockDbUpdate.mockReturnValue({
+      set: () => ({ where: () => ({ returning: () => Promise.resolve([updated]) }) })
+    })
+    const result = await runPatchCustomer({}, 1, { name: 'New Name', email: 'new@example.com', phoneNo: '0612345678' })
+    expect(result).toEqual(updated)
+  })
+
+  it('only includes provided fields in the update', async () => {
+    mockDbSelect.mockReturnValue({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve([{ id: 5 }]) }) })
+    })
+    const mockSet = vi.fn().mockReturnValue({
+      where: () => ({ returning: () => Promise.resolve([{ id: 1, name: 'Updated' }]) })
+    })
+    mockDbUpdate.mockReturnValue({ set: mockSet })
+
+    await runPatchCustomer({}, 1, { name: 'Updated' })
+    // Only name should be in the update object, not email or phoneNo
+    expect(mockSet).toHaveBeenCalledWith({ name: 'Updated' })
+  })
+
+  it('can update email only', async () => {
+    mockDbSelect.mockReturnValue({
+      from: () => ({ where: () => ({ limit: () => Promise.resolve([{ id: 5 }]) }) })
+    })
+    const mockSet = vi.fn().mockReturnValue({
+      where: () => ({ returning: () => Promise.resolve([{ id: 1 }]) })
+    })
+    mockDbUpdate.mockReturnValue({ set: mockSet })
+    await runPatchCustomer({}, 1, { email: 'updated@example.com' })
+    expect(mockSet).toHaveBeenCalledWith({ email: 'updated@example.com' })
   })
 })

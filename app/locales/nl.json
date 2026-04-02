@@ -78,7 +78,10 @@
     "totalHours": "Totaal uren",
     "labour": "Arbeidskosten",
     "markComplete": "Markeren als voltooid",
-    "generateInvoice": "Factuur genereren"
+    "generateInvoice": "Factuur genereren",
+    "addCarFirst": "Voeg een voertuig toe om arbeid te zoeken",
+    "deleteVisit": "Klus verwijderen",
+    "deleteVisitConfirm": "Weet u zeker dat u deze klus wilt verwijderen? Dit kan niet ongedaan worden gemaakt."
   },
   "car": {
     "lookupTitle": "Voertuig opzoeken",
@@ -90,7 +93,8 @@
   "customer": {
     "name": "Naam",
     "email": "E-mail",
-    "phone": "Telefoon"
+    "phone": "Telefoon",
+    "editCustomer": "Klant bewerken"
   },
   "parts": {
     "addParts": "Onderdelen toevoegen",
@@ -116,6 +120,8 @@
     "paid": "Betaald",
     "pending": "In behandeling",
     "paymentLink": "Betaalkoppeling",
+    "copyLink": "Link kopiëren",
+    "linkCopied": "Gekopieerd!",
     "print": "Afdrukken",
     "markPaid": "Markeren als betaald"
   },
@@ -128,11 +134,31 @@
     "account": "Account",
     "garage": "Garage",
     "pricing": "Prijzen",
+    "language": "Taal",
+    "subscription": "Abonnement",
+    "currentPlan": "Huidig abonnement",
+    "planTrial": "Proefperiode",
+    "planNone": "Geen abonnement",
+    "changePlan": "Abonnement wijzigen",
+    "subscribe": "Abonneren",
+    "cancelPlan": "Abonnement opzeggen",
+    "cancelPlanConfirm": "Weet u zeker dat u uw abonnement wilt opzeggen?",
     "garageName": "Garagenaam",
     "address": "Adres",
     "hourlyRate": "Uurtarief",
     "partsMarkup": "Onderdelen opslag",
-    "vatRate": "BTW-tarief"
+    "vatRate": "BTW-tarief",
+    "dangerZone": "Gevarenzone",
+    "deleteAccount": "Account verwijderen",
+    "deleteAccountWarning": "Dit verwijdert uw account en alle bijbehorende gegevens permanent. Dit kan niet ongedaan worden gemaakt.",
+    "deleteAccountConfirm": "Typ uw e-mailadres ter bevestiging:",
+    "deleteAccountEmailMismatch": "E-mailadres komt niet overeen. Typ uw e-mailadres exact.",
+    "yourPrivacy": "Uw privacy",
+    "privacyBody": "Wij delen, verkopen of gebruiken uw garage- of klantgegevens niet voor andere doeleinden dan het uitvoeren van deze service. Wij zullen nooit brieven of ongewenste communicatie naar uw klanten sturen.",
+    "appearance": "Weergave",
+    "light": "Licht",
+    "dark": "Donker",
+    "system": "Systeem"
   },
   "reference": {
     "selectCar": "Selecteer een voertuig",

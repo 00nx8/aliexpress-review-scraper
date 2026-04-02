@@ -4,6 +4,10 @@ Add a way to delete a visit
  - This should include all the information associated with it. Delete link between licenseplate, invoices and parsed documents
  - Add a way to delete account. This should include all associatedd information.
 
+- There should be some safe guards to not dox people and their info.
+  - Currently, lookup on a customer returns from ALL customers, not the customers linked to the user
+  - Limit the search to customers who appear in previous visits associated with the customer.
+
 Trial:
   - This is a general login thing, setting the login is buggy with the redirect middleware
 
@@ -37,7 +41,11 @@ Jobs:
 
   - Payment link after generating invoice should be either copied or shared
   - clicking back, takes the user in a loop between 0 -> -1 -> 0 -> -1
+  - Session is not cleared properly between loggin and out. nl account gets uk suggestions
 
+- Vehicles = UK
+- CARS = NL
+  - Is this a happy accident? 
 
 UK:
   - Existing cars can show up when the region for the car is not the same as the search region.

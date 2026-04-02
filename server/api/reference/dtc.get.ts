@@ -3,6 +3,15 @@ import { useDb } from '~~/server/db'
 import { dtcCodes, carTemplateDtcCodes } from '~~/server/db/schema'
 import { ilike, or, and, inArray, eq } from 'drizzle-orm'
 
+const listFields = {
+  id: dtcCodes.id,
+  code: dtcCodes.code,
+  category: dtcCodes.category,
+  categoryName: dtcCodes.categoryName,
+  shortDescription: dtcCodes.shortDescription,
+  severity: dtcCodes.severity
+}
+
 export default defineEventHandler(async (event) => {
   await requireUser(event)
   const query = getQuery(event)
@@ -25,17 +34,14 @@ export default defineEventHandler(async (event) => {
     conditions.push(inArray(dtcCodes.id, ids))
   }
 
-  // Don't return anything if no search and no template (avoid dumping 1277 codes)
-  if (!query.search && !query.templateId) return []
+  // No search and no template: return a starting set of generic codes
+  if (!query.search && !query.templateId) {
+    return db.select(listFields).from(dtcCodes)
+      .where(eq(dtcCodes.isGeneric, true))
+      .limit(50)
+  }
 
-  return db.select({
-    id: dtcCodes.id,
-    code: dtcCodes.code,
-    category: dtcCodes.category,
-    categoryName: dtcCodes.categoryName,
-    shortDescription: dtcCodes.shortDescription,
-    severity: dtcCodes.severity
-  }).from(dtcCodes)
+  return db.select(listFields).from(dtcCodes)
     .where(conditions.length ? and(...conditions) : undefined)
     .limit(200)
 })

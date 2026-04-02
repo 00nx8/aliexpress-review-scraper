@@ -3,6 +3,7 @@ definePageMeta({ layout: 'auth', auth: false })
 const { t } = useI18n()
 
 const router = useRouter();
+const { fetch: refreshSession } = useUserSession()
 const email = ref('')
 const password = ref('')
 const error = ref('')
@@ -13,6 +14,7 @@ async function login() {
   loading.value = true
   try {
     await $fetch('/api/auth/login', { method: 'POST', body: { email: email.value, password: password.value } })
+    await refreshSession()
     await navigateTo('/')
   } catch (e: any) {
     error.value = e?.data?.message || t('auth.invalidCredentials')

@@ -25,7 +25,7 @@ const { data: fluids } = await useFetch<any[]>('/api/reference/fluids', {
           v-for="tpl in templates"
           :key="tpl.id"
           class="w-full text-left rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm hover:border-primary hover:bg-primary/5 transition-colors"
-          @click="selectedTemplate = tpl"
+          @click="search = ''; selectedTemplate = tpl"
         >
           <div class="font-medium">{{ tpl.brand }} {{ tpl.make }}</div>
           <div class="text-xs text-gray-400">{{ tpl.engineSize }} · {{ tpl.minYear }}–{{ tpl.maxYear || 'present' }} · {{ tpl.fuelType }}</div>

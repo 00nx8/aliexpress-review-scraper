@@ -78,7 +78,10 @@
     "totalHours": "Total ore",
     "labour": "Manoperă",
     "markComplete": "Marchează ca finalizat",
-    "generateInvoice": "Generează factură"
+    "generateInvoice": "Generează factură",
+    "addCarFirst": "Adaugă un vehicul pentru a căuta lucrări",
+    "deleteVisit": "Șterge vizita",
+    "deleteVisitConfirm": "Ești sigur că vrei să ștergi această vizită? Aceasta nu poate fi anulată."
   },
   "car": {
     "lookupTitle": "Căutare vehicul",
@@ -87,7 +90,7 @@
     "confirmAndSave": "Confirmă și salvează",
     "noTemplatesFound": "Nu s-au găsit șabloane potrivite."
   },
-  "customer": { "name": "Nume", "email": "Email", "phone": "Telefon" },
+  "customer": { "name": "Nume", "email": "Email", "phone": "Telefon", "editCustomer": "Editează clientul" },
   "parts": {
     "addParts": "Adaugă piese",
     "manual": "Manual",
@@ -112,6 +115,8 @@
     "paid": "Plătit",
     "pending": "În așteptare",
     "paymentLink": "Link de plată",
+    "copyLink": "Copiază link",
+    "linkCopied": "Copiat!",
     "print": "Tipărire",
     "markPaid": "Marchează ca plătit"
   },
@@ -120,11 +125,31 @@
     "account": "Cont",
     "garage": "Garaj",
     "pricing": "Prețuri",
+    "language": "Limbă",
+    "subscription": "Abonament",
+    "currentPlan": "Plan curent",
+    "planTrial": "Perioadă de probă",
+    "planNone": "Fără plan",
+    "changePlan": "Schimbă planul",
+    "subscribe": "Abonează-te",
+    "cancelPlan": "Anulează abonamentul",
+    "cancelPlanConfirm": "Ești sigur că vrei să anulezi abonamentul?",
     "garageName": "Nume garaj",
     "address": "Adresă",
     "hourlyRate": "Tarif orar",
     "partsMarkup": "Adaos piese",
-    "vatRate": "Cotă TVA"
+    "vatRate": "Cotă TVA",
+    "dangerZone": "Zonă periculoasă",
+    "deleteAccount": "Șterge contul",
+    "deleteAccountWarning": "Aceasta va șterge permanent contul și toate datele asociate. Nu poate fi anulat.",
+    "deleteAccountConfirm": "Tastează adresa de email pentru a confirma ștergerea:",
+    "deleteAccountEmailMismatch": "Emailul nu se potrivește. Tastează emailul exact.",
+    "yourPrivacy": "Confidențialitatea ta",
+    "privacyBody": "Nu partajăm, vindem sau folosim informațiile despre garajul sau clienții tăi în alt scop decât operarea acestui serviciu. Nu vom trimite niciodată scrisori sau comunicări nesolicitate clienților tăi.",
+    "appearance": "Aspect",
+    "light": "Luminos",
+    "dark": "Întunecat",
+    "system": "Sistem"
   },
   "reference": {
     "selectCar": "Selectează un vehicul",

@@ -20,8 +20,12 @@ export default defineEventHandler(async (event) => {
   const conditions = []
   if (fluidIds) conditions.push(inArray(fluids.id, fluidIds))
   if (query.search) {
-    const s = `%${query.search}%`
-    conditions.push(or(ilike(fluids.systemName, s), ilike(fluids.type, s), ilike(fluids.spec, s)))
+    const terms = (query.search as string).trim().split(/\s+/)
+    const termConditions = terms.map(term => {
+      const s = `%${term}%`
+      return or(ilike(fluids.systemName, s), ilike(fluids.type, s), ilike(fluids.spec, s))
+    })
+    conditions.push(and(...termConditions))
   }
 
   return db.select().from(fluids)

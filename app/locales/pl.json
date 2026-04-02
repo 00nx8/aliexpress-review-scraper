@@ -78,7 +78,10 @@
     "totalHours": "Łączna liczba godzin",
     "labour": "Robocizna",
     "markComplete": "Oznacz jako zakończone",
-    "generateInvoice": "Generuj fakturę"
+    "generateInvoice": "Generuj fakturę",
+    "addCarFirst": "Dodaj pojazd, aby wyszukać zlecenia",
+    "deleteVisit": "Usuń wizytę",
+    "deleteVisitConfirm": "Czy na pewno chcesz usunąć tę wizytę? Tej operacji nie można cofnąć."
   },
   "car": {
     "lookupTitle": "Wyszukiwanie pojazdu",
@@ -87,7 +90,7 @@
     "confirmAndSave": "Potwierdź i zapisz",
     "noTemplatesFound": "Nie znaleziono pasujących szablonów."
   },
-  "customer": { "name": "Imię i nazwisko", "email": "Email", "phone": "Telefon" },
+  "customer": { "name": "Imię i nazwisko", "email": "Email", "phone": "Telefon", "editCustomer": "Edytuj klienta" },
   "parts": {
     "addParts": "Dodaj części",
     "manual": "Ręcznie",
@@ -112,6 +115,8 @@
     "paid": "Opłacone",
     "pending": "Oczekuje",
     "paymentLink": "Link do płatności",
+    "copyLink": "Kopiuj link",
+    "linkCopied": "Skopiowano!",
     "print": "Drukuj",
     "markPaid": "Oznacz jako opłacone"
   },
@@ -120,11 +125,31 @@
     "account": "Konto",
     "garage": "Warsztat",
     "pricing": "Cennik",
+    "language": "Język",
+    "subscription": "Subskrypcja",
+    "currentPlan": "Aktualny plan",
+    "planTrial": "Okres próbny",
+    "planNone": "Brak planu",
+    "changePlan": "Zmień plan",
+    "subscribe": "Subskrybuj",
+    "cancelPlan": "Anuluj plan",
+    "cancelPlanConfirm": "Czy na pewno chcesz anulować subskrypcję?",
     "garageName": "Nazwa warsztatu",
     "address": "Adres",
     "hourlyRate": "Stawka godzinowa",
     "partsMarkup": "Narzut na części",
-    "vatRate": "Stawka VAT"
+    "vatRate": "Stawka VAT",
+    "dangerZone": "Strefa niebezpieczna",
+    "deleteAccount": "Usuń konto",
+    "deleteAccountWarning": "Spowoduje to trwałe usunięcie konta i wszystkich powiązanych danych. Tej operacji nie można cofnąć.",
+    "deleteAccountConfirm": "Wpisz swój adres email, aby potwierdzić usunięcie:",
+    "deleteAccountEmailMismatch": "Email nie pasuje. Wpisz dokładnie swój email.",
+    "yourPrivacy": "Twoja prywatność",
+    "privacyBody": "Nie udostępniamy, nie sprzedajemy ani nie wykorzystujemy informacji o Twoim warsztacie lub klientach w żadnym innym celu niż obsługa tej usługi. Nigdy nie będziemy wysyłać listów ani niechcianych wiadomości do Twoich klientów.",
+    "appearance": "Wygląd",
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "System"
   },
   "reference": {
     "selectCar": "Wybierz pojazd",
