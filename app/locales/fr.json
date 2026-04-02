@@ -80,7 +80,9 @@
     "labour": "Main d'œuvre",
     "markComplete": "Marquer comme terminé",
     "generateInvoice": "Générer une facture",
-    "addCarFirst": "Ajoutez un véhicule à cette visite pour rechercher des travaux"
+    "addCarFirst": "Ajoutez un véhicule à cette visite pour rechercher des travaux",
+    "deleteVisit": "Supprimer la visite",
+    "deleteVisitConfirm": "Êtes-vous sûr de vouloir supprimer cette visite ? Cette action est irréversible."
   },
   "car": {
     "lookupTitle": "Recherche de véhicule",
@@ -95,7 +97,8 @@
   "customer": {
     "name": "Nom",
     "email": "E-mail",
-    "phone": "Téléphone"
+    "phone": "Téléphone",
+    "editCustomer": "Modifier le client"
   },
   "parts": {
     "addParts": "Ajouter des pièces",
@@ -124,6 +127,8 @@
     "paid": "Payé",
     "pending": "En attente",
     "paymentLink": "Lien de paiement",
+    "copyLink": "Copier le lien",
+    "linkCopied": "Copié !",
     "print": "Imprimer / Télécharger",
     "markPaid": "Marquer comme payé",
     "invoiceNo": "Facture",
@@ -167,7 +172,18 @@
     "cancelPlanConfirm": "Cela annulera votre abonnement immédiatement. Continuer ?",
     "planTrial": "Essai gratuit",
     "planNone": "Aucun plan actif",
-    "language": "Langue"
+    "language": "Langue",
+    "appearance": "Apparence",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système",
+    "yourPrivacy": "Votre confidentialité",
+    "privacyBody": "Nous ne partageons, ne vendons ni n'utilisons les informations de votre garage ou de vos clients à d'autres fins que le fonctionnement de ce service. Nous n'enverrons jamais de lettres ou de communications non sollicitées à vos clients.",
+    "dangerZone": "Zone dangereuse",
+    "deleteAccount": "Supprimer le compte",
+    "deleteAccountWarning": "Cela supprimera définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+    "deleteAccountConfirm": "Saisissez votre adresse e-mail pour confirmer la suppression :",
+    "deleteAccountEmailMismatch": "L'e-mail ne correspond pas. Saisissez votre adresse e-mail exactement."
   },
   "reference": {
     "selectCar": "Sélectionner un véhicule",

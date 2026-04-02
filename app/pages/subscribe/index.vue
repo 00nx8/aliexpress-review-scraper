@@ -72,7 +72,7 @@ async function continueToPayment() {
     <div class="max-w-2xl mx-auto">
       <div class="flex items-center justify-center gap-2 mb-8">
         <UIcon name="i-lucide-wrench" class="size-8 text-primary" />
-        <span class="text-2xl font-bold">Torq</span>
+        <span class="text-2xl font-bold">Wrenko</span>
       </div>
 
       <h1 class="text-2xl font-bold text-center mb-2">{{ t('subscribe.choosePlan') }}</h1>

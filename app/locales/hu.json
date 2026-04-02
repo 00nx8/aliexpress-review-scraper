@@ -80,7 +80,9 @@
     "labour": "Munkaerő",
     "markComplete": "Befejezettnek jelölés",
     "generateInvoice": "Számla létrehozása",
-    "addCarFirst": "Adjon hozzá járművet ehhez a látogatáshoz a munkaidő kereséséhez"
+    "addCarFirst": "Adjon hozzá járművet ehhez a látogatáshoz a munkaidő kereséséhez",
+    "deleteVisit": "Látogatás törlése",
+    "deleteVisitConfirm": "Biztosan törölni szeretné ezt a látogatást? Ez nem vonható vissza."
   },
   "car": {
     "lookupTitle": "Jármű keresése",
@@ -95,7 +97,8 @@
   "customer": {
     "name": "Név",
     "email": "Email",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "editCustomer": "Ügyfél szerkesztése"
   },
   "parts": {
     "addParts": "Alkatrészek hozzáadása",
@@ -124,6 +127,8 @@
     "paid": "Fizetve",
     "pending": "Függőben",
     "paymentLink": "Fizetési link",
+    "copyLink": "Link másolása",
+    "linkCopied": "Másolva!",
     "print": "Nyomtatás / Letöltés",
     "markPaid": "Fizetetként jelölés",
     "invoiceNo": "Számla",
@@ -167,7 +172,18 @@
     "cancelPlanConfirm": "Ez azonnal lemondja az előfizetést. Folytatja?",
     "planTrial": "Ingyenes próba",
     "planNone": "Nincs aktív terv",
-    "language": "Nyelv"
+    "language": "Nyelv",
+    "appearance": "Megjelenés",
+    "light": "Világos",
+    "dark": "Sötét",
+    "system": "Rendszer",
+    "yourPrivacy": "Az Ön adatvédelme",
+    "privacyBody": "Nem osztjuk meg, értékesítjük vagy használjuk fel garázsa vagy ügyfelei adatait más célra, mint e szolgáltatás működtetése. Soha nem küldünk levelet vagy kéretlen üzenetet ügyfeleinek.",
+    "dangerZone": "Veszélyes zóna",
+    "deleteAccount": "Fiók törlése",
+    "deleteAccountWarning": "Ez véglegesen törli fiókját és az összes kapcsolódó adatot. Ez nem vonható vissza.",
+    "deleteAccountConfirm": "Írja be email-címét a törlés megerősítéséhez:",
+    "deleteAccountEmailMismatch": "Az email nem egyezik. Írja be pontosan az email-címét."
   },
   "reference": {
     "selectCar": "Válasszon járművet",

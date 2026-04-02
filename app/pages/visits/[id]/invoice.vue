@@ -57,7 +57,7 @@ function print() {
         <div>
           <div class="flex items-center gap-2 mb-2">
             <UIcon name="i-lucide-wrench" class="size-6 text-primary" />
-            <span class="text-xl font-bold">{{ garage?.name || 'Torq' }}</span>
+            <span class="text-xl font-bold">{{ garage?.name || 'Wrenko' }}</span>
           </div>
           <div v-if="garage?.address" class="text-sm text-gray-500 whitespace-pre-line">{{ garage.address }}</div>
           <div v-if="garage?.email" class="text-sm text-gray-500">{{ garage.email }}</div>

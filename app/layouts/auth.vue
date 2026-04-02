@@ -3,7 +3,7 @@
     <div class="w-full max-w-md">
       <div class="flex items-center justify-center gap-2 mb-8">
         <UIcon name="i-lucide-wrench" class="size-8 text-primary" />
-        <span class="text-2xl font-bold">Torq</span>
+        <span class="text-2xl font-bold">Wrenko</span>
       </div>
       <slot />
     </div>

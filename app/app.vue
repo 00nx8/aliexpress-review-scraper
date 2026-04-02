@@ -12,7 +12,7 @@ useHead({
 })
 
 useSeoMeta({
-  title: 'Torq — Garage Management',
+  title: 'Wrenko — Garage Management',
   description: 'Invoice management for independent garages.'
 })
 </script>

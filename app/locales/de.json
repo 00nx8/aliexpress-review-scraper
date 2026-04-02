@@ -80,7 +80,9 @@
     "labour": "Arbeit",
     "markComplete": "Als abgeschlossen markieren",
     "generateInvoice": "Rechnung erstellen",
-    "addCarFirst": "Fügen Sie ein Fahrzeug zu diesem Besuch hinzu, um Arbeiten zu suchen"
+    "addCarFirst": "Fügen Sie ein Fahrzeug zu diesem Besuch hinzu, um Arbeiten zu suchen",
+    "deleteVisit": "Besuch löschen",
+    "deleteVisitConfirm": "Möchten Sie diesen Besuch wirklich löschen? Dies kann nicht rückgängig gemacht werden."
   },
   "car": {
     "lookupTitle": "Fahrzeugsuche",
@@ -95,7 +97,8 @@
   "customer": {
     "name": "Name",
     "email": "E-Mail",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "editCustomer": "Kunde bearbeiten"
   },
   "parts": {
     "addParts": "Teile hinzufügen",
@@ -124,6 +127,8 @@
     "paid": "Bezahlt",
     "pending": "Ausstehend",
     "paymentLink": "Zahlungslink",
+    "copyLink": "Link kopieren",
+    "linkCopied": "Kopiert!",
     "print": "Drucken / Herunterladen",
     "markPaid": "Als bezahlt markieren",
     "invoiceNo": "Rechnung",
@@ -167,7 +172,18 @@
     "cancelPlanConfirm": "Dies kündigt Ihr Abonnement sofort. Fortfahren?",
     "planTrial": "Kostenlose Testversion",
     "planNone": "Kein aktiver Plan",
-    "language": "Sprache"
+    "language": "Sprache",
+    "appearance": "Erscheinungsbild",
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System",
+    "yourPrivacy": "Ihre Privatsphäre",
+    "privacyBody": "Wir teilen, verkaufen oder nutzen Ihre Werkstatt- oder Kundendaten nicht für andere Zwecke als den Betrieb dieses Dienstes. Wir werden Ihren Kunden niemals Briefe oder unerwünschte Mitteilungen senden.",
+    "dangerZone": "Gefahrenbereich",
+    "deleteAccount": "Konto löschen",
+    "deleteAccountWarning": "Dies löscht Ihr Konto und alle zugehörigen Daten dauerhaft. Dies kann nicht rückgängig gemacht werden.",
+    "deleteAccountConfirm": "Geben Sie Ihre E-Mail-Adresse ein, um das Löschen zu bestätigen:",
+    "deleteAccountEmailMismatch": "E-Mail stimmt nicht überein. Geben Sie Ihre E-Mail-Adresse genau ein."
   },
   "reference": {
     "selectCar": "Fahrzeug auswählen",

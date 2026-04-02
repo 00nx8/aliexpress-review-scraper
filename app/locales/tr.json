@@ -80,7 +80,9 @@
     "labour": "İş Gücü",
     "markComplete": "Tamamlandı olarak işaretle",
     "generateInvoice": "Fatura Oluştur",
-    "addCarFirst": "İş gücü aramak için bu ziyarete araç ekleyin"
+    "addCarFirst": "İş gücü aramak için bu ziyarete araç ekleyin",
+    "deleteVisit": "Ziyareti Sil",
+    "deleteVisitConfirm": "Bu ziyareti silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
   },
   "car": {
     "lookupTitle": "Araç Arama",
@@ -95,7 +97,8 @@
   "customer": {
     "name": "Ad",
     "email": "E-posta",
-    "phone": "Telefon"
+    "phone": "Telefon",
+    "editCustomer": "Müşteriyi Düzenle"
   },
   "parts": {
     "addParts": "Parça Ekle",
@@ -124,6 +127,8 @@
     "paid": "Ödendi",
     "pending": "Beklemede",
     "paymentLink": "Ödeme Bağlantısı",
+    "copyLink": "Bağlantıyı Kopyala",
+    "linkCopied": "Kopyalandı!",
     "print": "Yazdır / İndir",
     "markPaid": "Ödendi olarak işaretle",
     "invoiceNo": "Fatura",
@@ -167,7 +172,18 @@
     "cancelPlanConfirm": "Bu, aboneliğinizi hemen iptal edecek. Devam edilsin mi?",
     "planTrial": "Ücretsiz Deneme",
     "planNone": "Aktif plan yok",
-    "language": "Dil"
+    "language": "Dil",
+    "appearance": "Görünüm",
+    "light": "Açık",
+    "dark": "Koyu",
+    "system": "Sistem",
+    "yourPrivacy": "Gizliliğiniz",
+    "privacyBody": "Garajınız veya müşterileriniz hakkındaki bilgileri bu hizmetin işletilmesi dışında herhangi bir amaçla paylaşmıyor, satmıyor veya kullanmıyoruz. Müşterilerinize asla mektup veya istenmeyen iletişim göndermeyeceğiz.",
+    "dangerZone": "Tehlike Bölgesi",
+    "deleteAccount": "Hesabı Sil",
+    "deleteAccountWarning": "Bu işlem hesabınızı ve tüm ilgili verilerinizi kalıcı olarak silecektir. Bu işlem geri alınamaz.",
+    "deleteAccountConfirm": "Silme işlemini onaylamak için e-posta adresinizi yazın:",
+    "deleteAccountEmailMismatch": "E-posta eşleşmiyor. E-posta adresinizi tam olarak yazın."
   },
   "reference": {
     "selectCar": "Araç seçin",
